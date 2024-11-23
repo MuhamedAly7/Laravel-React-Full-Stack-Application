@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import axiosClient from "../axios-client";
 
 export default function DefaultLayout() {
-    const { user, token, setUser, setToken } = useStateContext();
+    const { user, token, setUser, setToken, notification } = useStateContext();
 
     if (!token) {
         return <Navigate to="/login" />;
@@ -32,9 +32,11 @@ export default function DefaultLayout() {
             </aside>
             <div className="content">
                 <header>
-                    <div>Header</div>
+                    <div>Laravel With React Application</div>
                     <div>
                         {user.name}
+                        &nbsp;
+                        &nbsp;
                         <a href="#" className="btn-logout" onClick={onLogout}>
                             Logout
                         </a>
@@ -44,6 +46,7 @@ export default function DefaultLayout() {
                     <Outlet />
                 </main>
             </div>
+            {notification && <div className="notification">{notification}</div>}
         </div>
     );
 }
